@@ -13,4 +13,11 @@ Wikipedia and mapping semantically related words to Wikipedia Category Network
 KNN.
 
 ## Data
-[PAN 2015 Dataset](http://www.uni-weimar.de/medien/webis/events/pan-15/pan15-web/author-profiling.html)
+* [PAN 2015 Dataset](http://www.uni-weimar.de/medien/webis/events/pan-15/pan15-web/author-profiling.html)
+* [Koppel Blog Corpus](http://u.cs.biu.ac.il/~koppel/BlogCorpus.htm)
+
+## Reference Papers
+
+* [CLEF2013wn-PAN-SantoshEt2013.pdf](http://ceur-ws.org/Vol-1179/CLEF2013wn-PAN-SantoshEt2013.pdf)
+* [CLEF2013wn-PAN-PavanEt2013.pdf](http://ceur-ws.org/Vol-1179/CLEF2013wn-PAN-PavanEt2013.pdf)
+
