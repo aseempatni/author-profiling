@@ -18,6 +18,8 @@ KNN.
 
 ## Reference Papers
 
-* [CLEF2013wn-PAN-SantoshEt2013.pdf](http://ceur-ws.org/Vol-1179/CLEF2013wn-PAN-SantoshEt2013.pdf)
-* [CLEF2013wn-PAN-PavanEt2013.pdf](http://ceur-ws.org/Vol-1179/CLEF2013wn-PAN-PavanEt2013.pdf)
+* [Author Profiling: Predicting Age and Gender from Blogs](http://ceur-ws.org/Vol-1179/CLEF2013wn-PAN-SantoshEt2013.pdf)
+* [Author profiling using LDA and Maximum Entropy](http://ceur-ws.org/Vol-1179/CLEF2013wn-PAN-PavanEt2013.pdf)
+* [Recurrent Convolutional Neural Networks for Text Classification](http://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/view/9745/9552)
+* [Gender Classification with Deep Learning](http://cs224d.stanford.edu/reports/BartleAric.pdf)
 

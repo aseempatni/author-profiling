@@ -1,5 +1,12 @@
 ### Features used for author profiling
 
+#### Shortlisted
+* Frequency of POS tags
+* Capital Letters
+* Punctuations
+* Number of links
+* Readability Score
+
 #### Content based features:
 * Bag of words
 * Named entities
