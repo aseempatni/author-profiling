@@ -5,7 +5,8 @@
 * Capital Letters
 * Punctuations
 * Number of links
-* Readability Score
+* Readability Score (Flesch Index or SMOG test)
+* Frequency of slang word
 
 #### Content based features:
 * Bag of words
