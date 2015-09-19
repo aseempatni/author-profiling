@@ -37,7 +37,9 @@ KNN.
 * Repetition of words by a particular blogger across blogs written by him/her
 
 ## Data
+
 * [PAN 2015 Dataset](http://www.uni-weimar.de/medien/webis/events/pan-15/pan15-web/author-profiling.html)
+* [PAN 2014 Dataset](http://www.uni-weimar.de/medien/webis/events/pan-14/pan14-web/author-profiling.html)
 * [Koppel Blog Corpus](http://u.cs.biu.ac.il/~koppel/BlogCorpus.htm)
 
 ## Reference Papers

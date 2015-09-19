@@ -11,9 +11,9 @@ echo "Downloading PAN 14 dataset."
 # download
 wget http://www.uni-weimar.de/medien/webis/corpora/corpus-pan-labs-09-today/pan-14/pan14-data/pan14-author-profiling-training-corpus-2014-04-16.zip
 # extract
-tar -xvzf pan14-data/pan14-author-profiling-training-corpus-2014-04-16.zip -P PAN-14
+unzip pan14-author-profiling-training-corpus-2014-04-16.zip
 # remove temporary zip file
-rm pan14-data/pan14-author-profiling-training-corpus-2014-04-16.zip
+rm pan14-author-profiling-training-corpus-2014-04-16.zip
 
 ## Koppel dataset
 
