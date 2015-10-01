@@ -53,11 +53,11 @@ ifile.close()
 
 
 #creating a dataframe with author id as index and tags as columns
-df = pd.DataFrame(data=0,index = pos_distribution.keys(),columns = ['Gender','Age Group']+tagList+['Vocabulary'])
+df = pd.DataFrame(data=0,index = pos_distribution.keys(),columns = ['Gender','Age']+tagList+['Vocabulary'])
 
 for authorId,tags in pos_distribution.items():
 	df.loc[authorId,'Gender'] = author_info[authorId][0]
-	df.loc[authorId,'Age Group'] = author_info[authorId][1]
+	df.loc[authorId,'Age'] = author_info[authorId][1]
 	df.loc[authorId,'Vocabulary'] = vocabulary[authorId]
 	for tag,count in tags.items():
 		df.loc[authorId,tag] = count

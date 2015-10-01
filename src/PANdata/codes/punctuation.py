@@ -51,11 +51,11 @@ ifile.close()
 
 
 
-df = pd.DataFrame(data=0,index = author.keys(),columns = ['Gender','Age Group']+list(punctuation)+['vocabulary'])
+df = pd.DataFrame(data=0,index = author.keys(),columns = ['Gender','Age']+list(punctuation)+['Vocabulary'])
 
 for authorId,punctuations in author.items():
     df.loc[authorId,'Gender'] = author_info[authorId][0]
-    df.loc[authorId,'Age Group'] = author_info[authorId][1]
+    df.loc[authorId,'Age'] = author_info[authorId][1]
     for punct,count in punctuations.items():
         df.loc[authorId,punct] = count
 

@@ -60,11 +60,11 @@ for file in authorFileNames:
         author[key] = get_NER_tags(file)
 
 
-df = pd.DataFrame(data=0,index = author.keys(),columns = ["Gender","Age",'# NER','Vocabulary'])
+df = pd.DataFrame(data=0,index = author.keys(),columns = ["Gender","Age",'#NER','Vocabulary'])
 for authorId,tagInfo in author.items():
     df.loc[authorId,'Gender'] = author_info[authorId][0]
     df.loc[authorId,'Age'] = author_info[authorId][1]
-    df.loc[authorId,'# NER'] = author[authorId][0]
+    df.loc[authorId,'#NER'] = author[authorId][0]
     df.loc[authorId,'Vocabulary'] = author[authorId][1]
 
 

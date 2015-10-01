@@ -39,7 +39,7 @@ for line in truth_data:
 
 
 writer = csv.writer(ofile)
-writer.writerow(["author id","gender","age","No of Hyperlinks","# Sentences"])
+writer.writerow(['',"Gender","Age","#Hyperlinks","#Sentences"])
 
 
 males = 0

@@ -48,14 +48,14 @@ ifile.close()
 
 
 
-df = pd.DataFrame(data=0,index = author.keys(),columns = ['Gender','Age Group','Total Length of sentences','Vocabulary','No of sentences'])
+df = pd.DataFrame(data=0,index = author.keys(),columns = ['Gender','Age','Total Length of Sentences','Vocabulary','#Sentences'])
 
 for authorId,sentence_info in author.items():
     df.loc[authorId,'Gender'] = author_info[authorId][0]
-    df.loc[authorId,'Age Group'] = author_info[authorId][1]
-    df.loc[authorId,'Total Length of sentences'] = author[authorId][0]
+    df.loc[authorId,'Age'] = author_info[authorId][1]
+    df.loc[authorId,'Total Length of Sentences'] = author[authorId][0]
     df.loc[authorId,'Vocabulary'] = author[authorId][1]
-    df.loc[authorId,'No of sentences'] = author[authorId][2]
+    df.loc[authorId,'#Sentences'] = author[authorId][2]
 
 df.fillna(0)
 
