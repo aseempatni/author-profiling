@@ -3,6 +3,7 @@ import os
 import csv
 import re
 import pandas as pd
+import nltk
 
 directory = 'pan14-author-profiling-training-corpus-2014-04-16/mnt/nfs/tira/data/pan14-training-corpora-truth/pan14-author-profiling-training-corpus-english-blogs-2014-04-16'
 
@@ -34,16 +35,14 @@ for file in authorFileNames:
         text=""
         no_of_sentences=0
         for document in rawdocuments:
-            rawText = removeTag_CDATA_section(document.firstChild.nodeValue.strip())
             text = removeTag_CDATA_section(document.firstChild.nodeValue.strip())
-            temp = text.replace('?','.')
-            sentences = temp.split('.')
+            sentences = nltk.tokenize.sent_tokenize(text)
             for sentence in sentences:
                 length = length + len(sentence.split()) 
             if vocabulary:
-                vocabulary.update(set(rawText.split()))
+                vocabulary.update(set(text.split()))
             else:
-                vocabulary = set(rawText.split())
+                vocabulary = set(text.split())
             no_of_sentences = no_of_sentences+len(sentences)
         if vocabulary:
             author[file.split('.')[0]] = [length,len(vocabulary),no_of_sentences]
