@@ -4,28 +4,17 @@ import os
 import re
 import csv
 import pandas as pd
+from utils import *
 
 
 directory = 'pan14-author-profiling-training-corpus-2014-04-16/mnt/nfs/tira/data/pan14-training-corpora-truth/pan14-author-profiling-training-corpus-english-blogs-2014-04-16'
-
-def removeTag_CDATA_section(text):
-    processedText = re.sub(r'<[^>]*>','',text,0)
-    processedText = re.sub(r'&amp;','&',processedText,0)
-    processedText = re.sub(r'&ldquo;','"',processedText,0)
-    processedText = re.sub(r'&rdquo;','"',processedText,0)
-    processedText = re.sub(r'&rsquo;',"'",processedText,0)
-    processedText = re.sub(r'&lsquo;',"'",processedText,0)
-    processedText = re.sub(r'&nbsp;','',processedText,0)
-    return processedText
-
-
 
 
 def get_NER_tags(authorFileName):
     file = directory+"/"+authorFileName
     xmldoc = minidom.parse(file)
     rawdocuments = xmldoc.getElementsByTagName('document')
-    ner_length = 0 
+    ner_length = 0
     vocabulary = set()
     for document in rawdocuments:
         rawText = removeTag_CDATA_section(document.firstChild.nodeValue.strip())
@@ -69,10 +58,10 @@ for file in authorFileNames:
     if file.endswith(".xml"):
         key = file.split('.')[0]
         author[key] = get_NER_tags(file)
-        
+
 
 df = pd.DataFrame(data=0,index = author.keys(),columns = ["Gender","Age",'# NER','Vocabulary'])
-for authorId,tagInfo in author.items(): 
+for authorId,tagInfo in author.items():
     df.loc[authorId,'Gender'] = author_info[authorId][0]
     df.loc[authorId,'Age'] = author_info[authorId][1]
     df.loc[authorId,'# NER'] = author[authorId][0]

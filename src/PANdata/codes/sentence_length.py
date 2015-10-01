@@ -4,24 +4,11 @@ import csv
 import re
 import pandas as pd
 import nltk
+from utils import *
 
 directory = 'pan14-author-profiling-training-corpus-2014-04-16/mnt/nfs/tira/data/pan14-training-corpora-truth/pan14-author-profiling-training-corpus-english-blogs-2014-04-16'
 
 authorFileNames = os.listdir(directory)
-
-
-def removeTag_CDATA_section(text):
-    processedText = re.sub(r'<[^>]*>','',text,0)
-    processedText = re.sub(r'&amp;','&',processedText,0)
-    processedText = re.sub(r'&ldquo;','"',processedText,0)
-    processedText = re.sub(r'&rdquo;','"',processedText,0)
-    processedText = re.sub(r'&rsquo;',"'",processedText,0)
-    processedText = re.sub(r'&lsquo;',"'",processedText,0)
-    processedText = re.sub(r'&nbsp;','',processedText,0)
-    processedText = re.sub(r'[.][.]+',' ',processedText,0)
-    return processedText
-
-
 
 
 author = {}
@@ -31,14 +18,14 @@ for file in authorFileNames:
         xmldoc = minidom.parse(file_path)
         rawdocuments = xmldoc.getElementsByTagName('document')
         length = 0
-        vocabulary = set() 
+        vocabulary = set()
         text=""
         no_of_sentences=0
         for document in rawdocuments:
             text = removeTag_CDATA_section(document.firstChild.nodeValue.strip())
             sentences = nltk.tokenize.sent_tokenize(text)
             for sentence in sentences:
-                length = length + len(sentence.split()) 
+                length = length + len(sentence.split())
             if vocabulary:
                 vocabulary.update(set(text.split()))
             else:
