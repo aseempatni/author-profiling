@@ -12,6 +12,8 @@ Wikipedia and mapping semantically related words to Wikipedia Category Network
 2. Age and Gender prediction. This can be done by using any ML classifiers like SVM or
 KNN.
 
+## [Report](docs/README.md)
+
 ## Document Features 
 
 * Count of HTML links in the blog

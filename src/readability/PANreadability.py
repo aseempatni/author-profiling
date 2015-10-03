@@ -1,14 +1,13 @@
+import re
+import codecs
+import nltk
 import sys
 import os
+from readability import Readability
 from sklearn.feature_extraction.text import TfidfVectorizer
 import lda
 import numpy as np
 from xml.dom import minidom
-import re
-import codecs
-import nltk
-#from readability import Readability
-
 if not sys.stdout.isatty():
 	sys.stdout = codecs.getwriter('utf8')(sys.stdout)
 
@@ -37,16 +36,7 @@ def gettext(file):
 	#print ans
 	return ans[:-1]
 
-def count_sents_in_quotes(text):
-	v=len(nltk.tokenize.sent_tokenize(text))
-	if v>1 or v==0:
-		
-		return v
-	if text[-1]=='.' or text[-1]=='!' or text[-1]=='.' :
-		return 1
-	return 0
-
-def countQuotes():
+def getReadability():
 	authorFileNames = os.listdir(directory)
 	texts=[]
 	authors=[]
@@ -68,22 +58,17 @@ def countQuotes():
 				truth[r.split(':::')[0]]=df
 			fgh.close()
 
+	f=open('PANreadibility.csv','w')
+	f.write('ID,Gender,Age,ARI,FleschReadingEase,FleschKincaidGradeLevel,GunningFogIndex,SMOGIndex,ColemanLiauIndex,LIX,RIX\n')
 	for i in range(len(authors)):
 		sf=texts[i]
-		no_of_sents=len(nltk.tokenize.sent_tokenize(sf))
-		sents.append(no_of_sents)
-		l=re.findall(r'"[^"]*"',sf)
-		no_of_quoted_sents=sum([count_sents_in_quotes(i) for i in l])
-		quote.append(no_of_quoted_sents)
+		rd = Readability(sf.encode('ascii','ignore'))
+		f.write(authors[i]+','+truth[authors[i]][0]+','+truth[authors[i]][1]+','+str(rd.ARI())+','+str(rd.FleschReadingEase())+','+str(rd.FleschKincaidGradeLevel())+','+str(rd.GunningFogIndex())+','+str(rd.SMOGIndex())+','+str(rd.ColemanLiauIndex())+','+str(rd.LIX())+','+str(rd.RIX())+'\n')
 
-	f=open('quote.csv','w')
-	f.write('ID,Gender,Age,Quotes,Sentences\n')
-	for i in range(len(authors)):
-		f.write(authors[i]+','+truth[authors[i]][0]+','+truth[authors[i]][1]+','+str(quote[i])+','+str(sents[i])+'\n')
 	f.close()
 
 def main():
-	countQuotes()
+	getReadability()
 
 if __name__=="__main__":
 	main()
