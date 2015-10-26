@@ -134,7 +134,7 @@ This project aims to predicting personally identifiable information (PII), such 
 \section{Introduction}
 Though the enormous impact of social media on our daily life, we observe a lack of information about those who create the contents. In this regard, author profiling tries to determine the gender, age, native language or personality type of authors by analyzing their published texts. In this study, we focus on building a system to identify only the gender and age of the authors. Other authorship details will be a part of the future work in this area. Author profiling is of growing importance: E.g., from a marketing viewpoint, companies may be interested in knowing the demographics of their target group in order to achieve a better market segmentation; from a forensic viewpoint, determining the linguistic profile of a person who wrote a "suspicious text" may provide valuable background information.\\\\
 This study is targeted towards partial fulfillment of requirements for \textit{CS60057: Speech \& Natural Language Processing} during Fall 2015, under the guidance of Prof. Pawan Goyal.\\\\
-The remainder of this paper is organized as follows. Section 2 describes the corpus, Section 3 covers the proposed approach, Section 4 presents the results obtained so far, Section 5 discusses the evaluation measures, Section 6 contains details about the future work-plan, Section 7 enumerates the references and Section 8 concludes by listing the work done by the individual team-mates.
+The remainder of this paper is organized as follows. Section 2 describes the corpus, Section 3 covers the proposed approach, Section 4 presents the results obtained so far, Section 5 discusses the evaluation measures, Section 6 contains details about the future work-plan and  Section 7 enumerates the references. Please find attached PDF containing details about the work done by the individual team-mates.
 \newpage
 \section{Data-set}
 \subsection{Corpus}
@@ -211,7 +211,7 @@ This CDF is prepared for all the age-buckets and both the gender separately.\\
 2) Wikipedia Categorization: We shall use Wikipedia concepts and category information to represent the document (blog) \cite{iiit-god}
 \end{itemize}
 \subsection{Feature Subset Selection (FS)}
-Dimensionality reduction (DR) and Feature Subset Selection (FS) are two techniques for reducing the attribute space of a feature set. The main idea of FS is to remove redundant or irrelevant features from the data set as they can lead to a reduction of the classification accuracy and to an unnecessary increase of computational cost. The advantage of FS is that no information about the importance of single features is lost. For now, we will focus our attention on using FS over DR because DR can decrease the size of the attribute space strikingly. Another important disadvantage of DR is the fact that the linear combinations of the original features are usually not interpretable and the information about how much an original attribute contributes is often lost \cite{mit} .f possible, we might also try using DR technique (PCA) to our feature set and evaluate the improvement in the accuracy of the resulting classifier, if any.\\
+Dimensionality reduction (DR) and Feature Subset Selection (FS) are two techniques for reducing the attribute space of a feature set. The main idea of FS is to remove redundant or irrelevant features from the data set as they can lead to a reduction of the classification accuracy and to an unnecessary increase of computational cost. The advantage of FS is that no information about the importance of single features is lost. For now, we will focus our attention on using FS over DR because DR can decrease the size of the attribute space strikingly. Another important disadvantage of DR is the fact that the linear combinations of the original features are usually not interpretable and the information about how much an original attribute contributes is often lost \cite{mit} .If possible, we shall also try using DR technique (PCA) to our feature set and evaluate the improvement in the accuracy of the resulting classifier, if any.\\
 There are three types of feature subset selection approaches:
 \begin{itemize}
 \item Filters:\\
@@ -255,7 +255,7 @@ The percentage of negative labeled instances that were predicted as negative.
 \item Accuracy
 \begin{align}
 A = \frac{TP+TN}{TP + TN + FP + FN}
-\end{align}	The percentage of predictions that are correct.\\\\
+\end{align} The percentage of predictions that are correct.\\\\
 If time permits, we shall also explore the possibility of modeling the prediction of age as a regression problem and try to improve the baseline established by \cite{cmu}. 
 \end{itemize}
 \section{Results So Far}
@@ -312,30 +312,6 @@ Here goes the description about the plots obtained from the Blog Authorship Corp
 \end{figure*}
 
 \begin{figure*}
-\subfloat[\# of instances of Character Flooding vs Age]{
-      \label{fig:Num_Total_scatter}%
-        \includegraphics[width=0.5\textwidth]{koppel/age_characterflooding.png}%
-}%
-\hspace*{\fill}
-\subfloat[\# of Facts vs Age]{
-      \label{fig:Num_Total_scatter}%
-        \includegraphics[width=0.5\textwidth]{koppel/age_numfact.png}%
-}%
-\end{figure*}
-
-\begin{figure*}
-\subfloat[\# of opinions vs Age]{
-      \label{fig:Num_Total_scatter}%
-        \includegraphics[width=0.5\textwidth]{koppel/age_numopinion.png}%
-}%
-\hspace*{\fill}
-\subfloat[Blog Opinion Score vs Age]{
-      \label{fig:Num_Total_scatter}%
-        \includegraphics[width=0.5\textwidth]{koppel/age_opinionscore.png}%
-}%
-\end{figure*}
-
-\begin{figure*}
 \subfloat[\# of Inter-sentential Discourse Relations vs Age]{
       \label{fig:Num_Total_scatter}%
         \includegraphics[width=0.5\textwidth]{koppel/Discourse_Age.png}%
@@ -344,30 +320,6 @@ Here goes the description about the plots obtained from the Blog Authorship Corp
 \subfloat[\# of Inter-sentential Discourse Relations vs Gender]{
       \label{fig:Num_Total_scatter}%
         \includegraphics[width=0.5\textwidth]{koppel/Discourse_Gender.png}%
-}%
-\end{figure*}
-
-\begin{figure*}
-\subfloat[\# of instances of Character Flooding vs Gender]{
-      \label{fig:Num_Total_scatter}%
-        \includegraphics[width=0.5\textwidth]{koppel/gender_characterflooding.png}%
-}%
-\hspace*{\fill}
-\subfloat[\# of Facts vs Gender]{
-      \label{fig:Num_Total_scatter}%
-        \includegraphics[width=0.5\textwidth]{koppel/gender_numfact.png}%
-}%
-\end{figure*}
-
-\begin{figure*}
-\subfloat[\# of Opinions vs Gender]{
-      \label{fig:Num_Total_scatter}%
-        \includegraphics[width=0.5\textwidth]{koppel/gender_numopinion.png}%
-}%
-\hspace*{\fill}
-\subfloat[Blog Opinion Score vs Gender]{
-      \label{fig:Num_Total_scatter}%
-        \includegraphics[width=0.5\textwidth]{koppel/gender_opinionscore.png}%
 }%
 \end{figure*}
 
@@ -541,17 +493,13 @@ Here is the description about plots obtained from PAN'14 Corpus.\\
 \end{figure*}
 
 \begin{figure*}
-\subfloat[\# of Named Entities used vs Age]{
-  \label{fig:Raw_scatter}%
-  \includegraphics[width=0.5\textwidth]{pan/Readability_Scores_by_Age_Groups.png}%
-}
-%
-\hspace*{\fill}
-\subfloat[\# of HTML Links vs Gender]{
-  \label{fig:Num_scatter}%
-  \includegraphics[width=0.5\textwidth]{pan/Readability_Scores_by_Gender.png}%
-}
-%
+\includegraphics[width=18cm]{pan/Readability_Scores_by_Age_Groups.png}%
+\caption{Readability Scores vs Age}
+\end{figure*}
+
+\begin{figure*}
+\includegraphics[width=18cm]{pan/Readability_Scores_by_Gender.png}%
+\caption{Readability Scores vs Gender}
 \end{figure*}
 
 %\begin{figure*}
@@ -561,15 +509,12 @@ Here is the description about plots obtained from PAN'14 Corpus.\\
 %\end{figure*}
 
 \begin{figure*}
-\subfloat[Cumulative Distribution of POS tags vs Gender]{
-    \label{fig:Num_scatter}%
-	\includegraphics[width=0.5\textwidth]{pan/POS_CDF.png}%
-}%
-\hspace*{\fill}
-\subfloat[Cumulative Distribution of POS tags vs Age]{
-    \label{fig:Num_scatter}%
-	\includegraphics[width=0.5\textwidth]{pan/Punctuation_Age_CDF.png}%
-}%
+\includegraphics[width=18cm]{pan/POS_CDF.png}%
+\caption{Cumulative Distribution of POS tags vs Gender}
+\end{figure*}
+\begin{figure*}
+\includegraphics[width=18cm]{pan/Punctuation_Age_CDF.png}%
+\caption{Cumulative Distribution of POS tags vs Age}
 \end{figure*}
 
 %\begin{figure*}
@@ -616,7 +561,7 @@ For the PAN'14 Corpus, we have a test data-set (corresponding to PAN' 15) which 
 \bibitem{arbit} 
 James Marquardt et al.
 [\textit{Age and Gender Identication in Social Media}]. 
-Annalen der Physik, 322(10):891–921, 1905.
+Annalen der Physik, 322(10):891-921, 1905.
 
 \bibitem{iiit-god} 
 K Santosh, Romil Bansal, Mihir Shekhar, and Vasudeva Varma
@@ -625,7 +570,7 @@ and Gender of Blog Authors}.
 Notebook for PAN at CLEF 2013.
 
 \bibitem{cmu} 
-Dong Nguyen, Noah A. Smith, and Carolyn P. Rosé
+Dong Nguyen, Noah A. Smith, and Carolyn P. Rose
 \textit{Author Age Prediction from Text using Linear Regression}. 
 In Proceedings of the ACL Workshop on Language Technology for Cultural Heritage, Social Sciences, and Humanities (LATECH 2011), Portland, OR, June 2011.
 
@@ -636,7 +581,7 @@ Proceedings of PAN at CLEF 2013.
 \bibitem{koppel} 
 S. Argamon, M. Koppel, J. Pennebaker and J. Schler (2009) 
 \textit{Automatically profiling the author of an anonymous text}. 
-Communications of the ACM 52 (2): 119–123.
+Communications of the ACM 52 (2): 119-123.
 
 \bibitem{koppel1} 
 J. Schler, Moshe Koppel, S. Argamon and J. Pennebaker (2006)
@@ -650,6 +595,4 @@ JMLR W\&P 4:90-105, 2008.
 
 \end{thebibliography}
 
-\section{Appendix}
-Last Page
 \end{document}
