@@ -14,7 +14,6 @@ authors = [x[0] for x in truth]
 def get_doc_for(author):
     with open(path+"/"+author+".xml",'r') as docs:
         doc = BeautifulSoup(docs)
-        #print doc
         x = doc.findAll("document")
         clean_docs = [x.text.strip() for x in doc.findAll("document")]
         return clean_docs
