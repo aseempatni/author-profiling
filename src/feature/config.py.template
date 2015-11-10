@@ -1,0 +1,23 @@
+# Make copy of this file to config.py
+# Then change the configurations as per your setup and requirements.
+
+# Don't forget to put 'api_key.txt' in this same folder.
+
+# Directory where you have downloaded and extracted the koppel data
+input_blog_directory = '../../data/koppel/blogs'
+
+# Directory where you want to store the processed data
+output_dump_directory = '../../data/koppel/output/'
+
+# Starting index starts from 1 (don't use 0 here)
+starting_index = 1
+
+# No of authors to process starting index
+count = 5
+
+
+
+# Don't change anything here. This is for processing the above configurations.
+outdir = output_dump_directory
+directory = input_blog_directory
+ending_index = starting_index + count - 1
