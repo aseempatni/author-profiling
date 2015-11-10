@@ -20,7 +20,7 @@ def get_POS_Tags(docs):
 def distribution(tagged_data):
     tag_dict = {}
     for i in range(len(tagged_data)):
-        for tag in range(len(tagged_data[i]))
+        for tag in tagged_data[i]:
     		if tag[1] not in punctuation and tag[1]!="''" and tag[1]!="``":
     			if tag_dict.has_key(tag[1])==False:
     				tag_dict[tag[1]]=1

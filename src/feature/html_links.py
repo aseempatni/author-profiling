@@ -1,5 +1,5 @@
 # Get features related to hyperlink
-
+import nltk
 from xml.dom import minidom
 import os
 import csv
@@ -19,21 +19,14 @@ def get_hyperlink_feature(document):
             total_sentence = no_of_hyperlinks
     return (no_of_hyperlinks,total_sentence)
 
-# change to take list of docs as parameter and return same
-def get_hyperlink_info(filename):
-    author = {}
-    xmldoc = minidom.parse(filename)
-    rawdocuments = xmldoc.getElementsByTagName('document')
-    documents = []
+
+def get_hyperlink_info(docs):
     no_of_hyperlinks = 0
-    text=""
-    total_sentence = 0
-    for document in rawdocuments:
-        no_of_hyperlinks = no_of_hyperlinks + document.firstChild.nodeValue.count("<a href=")
-        text = removeTag_CDATA_section(document.firstChild.nodeValue.strip())
-        temp = text.replace('?','.')
-        sentences = temp.split('.')
-        total_sentence = total_sentence + len(sentences)
+    total_sentence = 0 
+    for doc in docs:
+        no_of_hyperlinks = no_of_hyperlinks + doc.count("urlLink")
+        text = removeTag_CDATA_section(doc.strip())
+        total_sentence = total_sentence + len(nltk.tokenize.sent_tokenize(text))
     if total_sentence<no_of_hyperlinks:
             total_sentence = no_of_hyperlinks
     return (no_of_hyperlinks,total_sentence)

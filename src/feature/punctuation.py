@@ -10,27 +10,19 @@ from utils import *
 
 directory = '../../data/pan14-author-profiling-training-corpus-2014-04-16/mnt/nfs/tira/data/pan14-training-corpora-truth/pan14-author-profiling-training-corpus-english-blogs-2014-04-16'
 
-def extract_from_xml(file_path):
-    xmldoc = minidom.parse(file_path)
-    rawdocuments = xmldoc.getElementsByTagName('document')
+def extract_from_xml(docs):
     res = dict.fromkeys(list(punctuation),0)
     res['vocabulary'] = 0
     vocabulary = set()
-    for document in rawdocuments:
-        text = removeTag_CDATA_section(document.firstChild.nodeValue.strip())
+    for doc in docs:
+        text = removeTag_CDATA_section(doc.strip())
         counts = Counter(text)
         for k,v in counts.iteritems():
             if k in punctuation:
                 res[k] = res[k] + v
 
-        if vocabulary:
-            vocabulary.update(set(text.split()))
-        else:
-            vocabulary = set(text.split())
-    if vocabulary:
-        res['vocabulary'] = len(vocabulary)
-    else:
-        res['vocabulary'] = 0
+        vocabulary.update(text.split())
+    res['vocabulary'] = len(vocabulary)
     return res
 
 
