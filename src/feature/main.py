@@ -33,10 +33,10 @@ def main(author):
 
         # change to send docs instead of filename
         author[author_id]['punctuation'] = punctu.extract_from_xml(file_path)
-        author[author_id]['pos'] = pos_tagging.distribution(pos_tagging.get_POS_Tags(file_path))
-        author[author_id]['NER'] = NER_tagger.get_NER_tags(file_path)
+        author[author_id]['pos'] = pos_tagging.distribution(pos_tagging.get_POS_Tags(docs))
+        author[author_id]['NER'] = NER_tagger.get_NER_tags(docs)
 
-        author[author_id]['hyperlinks_info'] = html_links.get_hyperlink_info(file_path)
+        author[author_id]['hyperlinks_info'] = html_links.get_hyperlink_info(docs)
         author[author_id]["topic_var"] = topics_mean_stdev.getTopics(docs)
         author[author_id]["quotes"] = countQuote.getquotes(docs)
         text = """We are close to wrapping up our 10 week Rails Course. This week we will cover a handful of topics commonly encountered in Rails projects. We then wrap up with part 2 of our Reddit on Rails exercise!  By now you should be hard at work on your personal projects. The students in the course just presented in front of the class with some live demos and a brief intro to to the problems their app were solving. Maybe set aside some time this week to show someone your progress, block off 5 minutes and describe what goal you are working towards, the current state of the project (is it almost done, just getting started, needs UI, etc.), and then show them a quick demo of the app. Explain what type of feedback you are looking for (conceptual, design, usability, etc.) and see what they have to say.  As we are wrapping up the course you need to be focused on learning as much as you can, but also making sure you have the tools to succeed after the class is over."""

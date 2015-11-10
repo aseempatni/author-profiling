@@ -10,27 +10,19 @@ from utils import *
 directory = 'pan14-author-profiling-training-corpus-2014-04-16/mnt/nfs/tira/data/pan14-training-corpora-truth/pan14-author-profiling-training-corpus-english-blogs-2014-04-16'
 
 
-def get_NER_tags(filename):
-    xmldoc = minidom.parse(filename)
-    rawdocuments = xmldoc.getElementsByTagName('document')
+def get_NER_tags(docs):
     ner_length = 0
     vocabulary = set()
-    for document in rawdocuments:
-        rawText = removeTag_CDATA_section(document.firstChild.nodeValue.strip())
+    for doc in docs:
+        rawText = removeTag_CDATA_section(doc.strip())
         sent1 = nltk.word_tokenize(rawText)
         sent2 = nltk.pos_tag(sent1)
         sent3 = nltk.ne_chunk(sent2, binary=True)
         for item in sent3:
             if hasattr(item,'node'):
                 ner_length = ner_length+len(item)
-        if vocabulary:
-            vocabulary.update(set(rawText.split()))
-        else:
-            vocabulary = set(rawText.split())
-    if vocabulary:
-        return (ner_length,len(vocabulary))
-    else:
-        return (ner_length,0)
+        vocabulary.update(rawText.split())
+    return (ner_length,len(vocabulary))
 
 
 
