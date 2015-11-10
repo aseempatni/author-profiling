@@ -60,5 +60,5 @@ def parseXMLtoDict(path):
         blogger_dict["Dates"].append(date_and_post[0].strip())
         post = date_and_post[1].replace("<post>","").replace("</post>","").strip()
         post = BeautifulSoup(post).get_text()
-        blogger_dict["Posts"].append(post)
+        blogger_dict["Posts"].append(post.encode('ASCII','ignore'))
     return blogger_dict
