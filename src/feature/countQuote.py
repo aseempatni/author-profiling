@@ -80,13 +80,14 @@ def countQuotes():
 	f.close()
 
 
-def getquotes (filename) :
-        sf = gettext(filename)
-	no_of_sents=len(nltk.tokenize.sent_tokenize(sf))
+def getquotes (docs) :
+    no_of_sents = 0
+    no_of_quotes = 0
+    for sf in docs:
+	no_of_sents=no_of_sents + len(nltk.tokenize.sent_tokenize(sf))
 	l=re.findall(r'"[^"]*"',sf)
-	no_of_quoted_sents=sum([count_sents_in_quotes(i) for i in l])
-        return (no_of_sents, no_of_quoted_sents)
-
+	no_of_quotes = no_of_quotes + len(l)
+    return (no_of_sents, no_of_quotes)
 
 
 

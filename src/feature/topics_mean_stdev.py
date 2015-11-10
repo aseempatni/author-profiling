@@ -86,9 +86,8 @@ def countQuotes():
 		f.write(authors[i]+','+truth[authors[i]][0]+','+truth[authors[i]][1]+','+str(means[i])+','+str(stdevs[i])+'\n')
 	f.close()
 
-def getTopics (filename) :
+def getTopics (docs) :
 
-    docs = gettext(filename)
     var = []
     for sf in docs:
         response = alchemyapi.concepts('text', sf)

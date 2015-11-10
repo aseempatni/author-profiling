@@ -19,7 +19,7 @@ def get_hyperlink_feature(document):
             total_sentence = no_of_hyperlinks
     return (no_of_hyperlinks,total_sentence)
 
-
+# change to take list of docs as parameter and return same
 def get_hyperlink_info(filename):
     author = {}
     xmldoc = minidom.parse(filename)
