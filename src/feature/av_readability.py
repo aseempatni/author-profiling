@@ -3,7 +3,7 @@ from readability import readability as r
 def av_readability(docs):
     c = Counter()
     for doc in docs:
-        rd = r.Readability(doc)
+        rd = r.Readability(doc.encode('ascii','ignore'))
         read = {}
         read["ARI"] = rd.ARI()
         read["FleschReadingEase"] = rd.FleschReadingEase()

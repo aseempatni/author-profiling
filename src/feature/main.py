@@ -1,9 +1,6 @@
 import os
-import csv
 import punctuation as punctu
-from string import punctuation
 from utils import *
-import pandas as pd
 import pprint as pp
 import NER_tagger
 import pos_tagging
@@ -31,6 +28,7 @@ def features_from(docs):
     return feature
 
 
+# Given a file extract all the truth data and features and dump it to a json
 def process(file):
     ofilePath = outdir+file.split('.')[0]+".json"
 
@@ -41,7 +39,7 @@ def process(file):
         author_id = authorInfo['Id']
         author = {}
         file_path = directory+"/"+file
-        docs = gettext(file_path)
+        docs = getDocs(file_path)
         author[author_id] = features_from(docs)
         author[author_id]['Gender'] = authorInfo['Gender']
         author[author_id]['Age'] = authorInfo['Age']
