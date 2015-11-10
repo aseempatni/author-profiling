@@ -34,7 +34,7 @@ def filter_xml(list):
             author_files.append(file)
     return author_files
 
-def gettext(file_path):
+def getDocs(file_path):
     blogger = parseXMLtoDict(file_path)
     return blogger['Posts']
 	# xmldoc = minidom.parse(file)
