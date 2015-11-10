@@ -1,13 +1,16 @@
 import sys
 import os
 from sklearn.feature_extraction.text import TfidfVectorizer
-import lda
+#import lda
 import numpy as np
 from xml.dom import minidom
 import re
 import codecs
 import nltk
-#from readability import Readability
+from alchemyapi_python.alchemyapi import AlchemyAPI
+import math
+
+alchemyapi = AlchemyAPI()
 
 if not sys.stdout.isatty():
 	sys.stdout = codecs.getwriter('utf8')(sys.stdout)
@@ -27,38 +30,33 @@ def removeTag_CDATA_section(text):
     return processedText
 
 def gettext(file):
-	file = directory+"/"+file
 	xmldoc = minidom.parse(file)
 	rawdocuments = xmldoc.getElementsByTagName('document')
-	ans=""
+	ans=[]
 	for document in rawdocuments:
-		ans=ans+removeTag_CDATA_section(document.firstChild.nodeValue.strip())
-		ans=ans+" "
-	#print ans
-	return ans[:-1]
+		ans.append(removeTag_CDATA_section(document.firstChild.nodeValue.strip()))
+	return ans
 
-def count_sents_in_quotes(text):
-	v=len(nltk.tokenize.sent_tokenize(text))
-	if v>1 or v==0:
+def mean(numbers):
+	return sum(numbers)/float(len(numbers))
 
-		return v
-	if text[-1]=='.' or text[-1]=='!' or text[-1]=='.' :
-		return 1
-	return 0
+def stdev(numbers):
+	avg = mean(numbers)
+	variance = sum([pow(x-avg,2) for x in numbers])/float(len(numbers))
+	return math.sqrt(variance)
 
 def countQuotes():
 	authorFileNames = os.listdir(directory)
 	texts=[]
 	authors=[]
 	truth={}
-	quote=[]
-	sents=[]
+	means=[]
+	stdevs=[]
 
 	for file in authorFileNames:
 		if file.endswith(".xml"):
 			te=gettext(file)
-			te.encode('ascii','ignore')
-			texts.append(te)
+			texts.append(te.encode('ascii','ignore'))
 			authors.append(file[:-4])
 		else:
 			fgh=open(directory+"/"+file,'r')
@@ -70,27 +68,41 @@ def countQuotes():
 
 	for i in range(len(authors)):
 		sf=texts[i]
-		no_of_sents=len(nltk.tokenize.sent_tokenize(sf))
-		sents.append(no_of_sents)
-		l=re.findall(r'"[^"]*"',sf)
-		no_of_quoted_sents=sum([count_sents_in_quotes(i) for i in l])
-		quote.append(no_of_quoted_sents)
+		cx=[]
+		response = alchemyapi.concepts('text', sf)
+		if response['status'] == 'OK':
+			for concept in response['concepts']:
+				cx.append(float(concept['relevance']))
+		if len(cx)==0:
+			means.append(-1)
+			stdevs.append(-1)
+			continue
+		means.append(mean(cx))
+		stdevs.append(stdev(cx))
 
-	f=open('quote.csv','w')
-	f.write('ID,Gender,Age,Quotes,Sentences\n')
+	f=open('topics_mean_stdev.csv','w')
+	f.write('ID,Gender,Age,Mean,StDev\n')
 	for i in range(len(authors)):
-		f.write(authors[i]+','+truth[authors[i]][0]+','+truth[authors[i]][1]+','+str(quote[i])+','+str(sents[i])+'\n')
+		f.write(authors[i]+','+truth[authors[i]][0]+','+truth[authors[i]][1]+','+str(means[i])+','+str(stdevs[i])+'\n')
 	f.close()
 
+def getTopics (filename) :
 
-def getquotes (filename) :
-        sf = gettext(filename)
-	no_of_sents=len(nltk.tokenize.sent_tokenize(sf))
-	l=re.findall(r'"[^"]*"',sf)
-	no_of_quoted_sents=sum([count_sents_in_quotes(i) for i in l])
-        return (no_of_sents, no_of_quoted_sents)
+    docs = gettext(filename)
+    var = []
+    for sf in docs:
+        response = alchemyapi.concepts('text', sf)
+        cx=[]
+        if response['status'] == 'OK':
+        	for concept in response['concepts']:
+        		cx.append(float(concept['relevance']))
+        if len(cx)==0:
+            # some error has occured
+            continue
+        else :
+            var.append(stdev(cx))
 
-
+    return mean(var)
 
 
 def main():

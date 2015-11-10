@@ -1,7 +1,5 @@
 import sys
 import os
-from sklearn.feature_extraction.text import TfidfVectorizer
-import lda
 import numpy as np
 from xml.dom import minidom
 import re
@@ -27,7 +25,6 @@ def removeTag_CDATA_section(text):
     return processedText
 
 def gettext(file):
-	file = directory+"/"+file
 	xmldoc = minidom.parse(file)
 	rawdocuments = xmldoc.getElementsByTagName('document')
 	ans=""
