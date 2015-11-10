@@ -13,14 +13,12 @@ import topics_mean_stdev
 import sys
 import json
 from av_readability import av_readability
+from config import *
 
-
-directory = '../../koppelblogs'
-outdir = 'output/'
 
 authorFileNames = os.listdir(directory)
 
-
+# extract features given a list of documents3
 def features_from(docs):
     feature = {}
     feature['punctuation'] = punctu.extract_from_xml(docs)
@@ -33,29 +31,43 @@ def features_from(docs):
     return feature
 
 
-def main():
-    start = int(sys.argv[1])
-    processRange = int(sys.argv[2])
-    i=0
-    for file in filter_xml(authorFileNames):
-        if i>=start and i<start+processRange:
-            i=i+1
-            ofilePath = 'output/'+file.split('.')[0]+".json"
-            if os.path.isfile(ofilePath) == False:
-                print file
-                authorInfo = get_author_info(file)
-                author_id = authorInfo['Id']
-                author = {}
-                file_path = directory+"/"+file
-                docs = gettext(file_path)
-                author[author_id] = features_from(docs)
-                author[author_id]['Gender'] = authorInfo['Gender']
-                author[author_id]['Age'] = authorInfo['Age']
+def process(file):
+    ofilePath = outdir+file.split('.')[0]+".json"
 
-                with open(ofilePath,'w') as fp:
-                    json.dump(author[author_id],fp, indent=4)
-            else:
-                print file+":skip"
+    # process only if not already processed
+    if os.path.isfile(ofilePath) == False:
+        print file
+        authorInfo = get_author_info(file)
+        author_id = authorInfo['Id']
+        author = {}
+        file_path = directory+"/"+file
+        docs = gettext(file_path)
+        author[author_id] = features_from(docs)
+        author[author_id]['Gender'] = authorInfo['Gender']
+        author[author_id]['Age'] = authorInfo['Age']
+
+        with open(ofilePath,'w') as fp:
+            json.dump(author[author_id],fp, indent=4)
+
+    # skip if already present
+    else:
+        print file+":skip"
+
+
+def main():
+    index = 1
+
+    for file in filter_xml(authorFileNames):
+
+        # task done
+        if index>ending_index:
+            break
+
+        # need to process
+        if index >= starting_index:
+            process(file)
+
+        index = index + 1
 
 
 if __name__ == "__main__":
