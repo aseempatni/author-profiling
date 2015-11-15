@@ -1,32 +1,10 @@
 import os
-import punctuation as punctu
 from utils import *
-import pprint as pp
-import NER_tagger
-import pos_tagging
-import html_links
-import countQuote
-import topics_mean_stdev
-import sys
 import json
-from av_readability import av_readability
 from config import *
-
+import extract
 
 authorFileNames = os.listdir(directory)
-
-# extract features given a list of documents3
-def features_from(docs):
-    feature = {}
-    feature['punctuation'] = punctu.extract_from_xml(docs)
-    feature['pos'] = pos_tagging.distribution(pos_tagging.get_POS_Tags(docs))
-    feature['NER'] = NER_tagger.get_NER_tags(docs)
-    feature['hyperlinks_info'] = html_links.get_hyperlink_info(docs)
-    feature["topic_var"] = topics_mean_stdev.getTopics(docs)
-    feature["quotes"] = countQuote.getquotes(docs)
-    feature["readability"] = av_readability(docs)
-    return feature
-
 
 # Given a file extract all the truth data and features and dump it to a json
 def process(file):
@@ -40,7 +18,7 @@ def process(file):
         author = {}
         file_path = directory+"/"+file
         docs = getDocs(file_path)
-        author[author_id] = features_from(docs)
+        author[author_id] = extract.features_from(docs)
         author[author_id]['Gender'] = authorInfo['Gender']
         author[author_id]['Age'] = authorInfo['Age']
 

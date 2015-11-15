@@ -38,7 +38,10 @@ def gettext(file):
 	return ans
 
 def mean(numbers):
+    if len(numbers)>0:
 	return sum(numbers)/float(len(numbers))
+    else:
+        return 0
 
 def stdev(numbers):
 	avg = mean(numbers)
