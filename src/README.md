@@ -1,5 +1,7 @@
 ## Instruction to use `test.py`
 
+Use it to convert a document to CSV of its features.
+
 * Have the input document saved in a file. Here we take that as `input_01.txt`.
 * Run `python tast.py [file_name]`.
 * The resulting CSV will be saved in `[file_name].out`.

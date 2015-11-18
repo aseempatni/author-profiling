@@ -13,30 +13,7 @@ Wikipedia and mapping semantically related words to Wikipedia Category Network
 KNN.
 
 ## [Report](docs/README.md)
-
-## Document Features 
-
-* Count of HTML links in the blog
-* Distribution of various POS tags across different gender
-* More usage of pronouns than actual referral to someone/something (coreferencing)
-* Count of discourse relations present within the blog text
-* Average length of sentences 
-* Count of named entities within the blog text
-* Distribution of various punctuation tags
-* Opinion scores for the blog
-* Readability score for the blog (SMOG and Fischer)
-* Common topics talked about in the blogs
-* Non-topical words distribution across different gender and age brackets
-* Count of non-dictionary words used
-* Count of direct quotations used in the text
-* References to different chronological times within the text
-* Count of facts vs # of opinions used in the text
-* Usage of Capital letters
-* Character flooding like hellooooo
-* LSA of the blogs for a particular user - as a measure of his/her behavior to be either focussed or diverse.
-* Quality of words used in the text (relative frequency of words in corpus: less frequent more important)
-* Average # of mis-spelled words in the texts
-* Repetition of words by a particular blogger across blogs written by him/her
+## [Presentation](https://docs.google.com/presentation/d/16f11sm9okiQmgtritBstIuznQfHJMECAsLeDxVyEuM8/edit?usp=sharing)
 
 ## Data
 
@@ -44,10 +21,16 @@ KNN.
 * [PAN 2014 Dataset](http://www.uni-weimar.de/medien/webis/events/pan-14/pan14-web/author-profiling.html)
 * [Koppel Blog Corpus](http://u.cs.biu.ac.il/~koppel/BlogCorpus.htm)
 
-## Reference Papers
+## Reference 
 
 * [Author Profiling: Predicting Age and Gender from Blogs](http://ceur-ws.org/Vol-1179/CLEF2013wn-PAN-SantoshEt2013.pdf)
 * [Author profiling using LDA and Maximum Entropy](http://ceur-ws.org/Vol-1179/CLEF2013wn-PAN-PavanEt2013.pdf)
 * [Recurrent Convolutional Neural Networks for Text Classification](http://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/view/9745/9552)
 * [Gender Classification with Deep Learning](http://cs224d.stanford.edu/reports/BartleAric.pdf)
 
+* Varma Et Al. 2013. Exploiting Wikipedia Categorization for Predicting Age and Gender of Blog Authors. Notebook for PAN at CLEF 2013. 
+* Smith Et. Al. 2011. Author Age Prediction from Text using Linear Regression. In Proceedings of the ACL Workshop on Language Technology for Cultural Heritage, Social Sciences, and Humanities (LATECH 2011), Portland, OR, June 2011. 
+* Francisco Rangel, Paolo Rosso, Moshe Koppel, Efstathios Stamatatos, and Giacomo Inches. Overview of the Author Profiling Task at PAN 2013. Proceedings of PAN at CLEF 2013. 
+* Argamon Et. Al. 2009. Automatically profiling the author of an anonymous text. Communications of the ACM 52 (2): 119-123. 
+* Schler Et. Al. 2006. Effects of Age and Gender on Blogging. In Proceedings of AAAI Spring Symposium on Computational Approaches for Analyzing Weblogs, March 2006. 
+* Meina Et. Al. 2013. Ensemble-based Classification for Author Profiling Using Various Features. The Notebook for 2013 PAN at CLEF 2013
